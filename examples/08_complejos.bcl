@@ -1,0 +1,14 @@
+# 08_complejos.bcl -- complex numbers in CALC. / números complejos en CALC.
+# A complex number is text of the form a+bi; CALC understands it directly.
+# Un complejo es un texto con la forma a+bi; CALC lo entiende sin más.
+SET z [CALC complex(3, 4)]
+PUTS "z = $z"
+PUTS "|z| = [CALC abs($z)]"
+PUTS "z * z = [CALC ($z) * ($z)]"
+PUTS "conjugate = [CALC conj($z)]"
+PUTS "sqrt(-4) = [CALC sqrt(-4)]"
+PUTS "e^(i*pi) = [CALC exp(i * 3.141592653589793)]"
+# Careful: a complex variable substituted into an expression needs parentheses,
+# because it is inserted as text.
+# Cuidado: una variable compleja sustituida en una expresión necesita paréntesis,
+# porque se inserta como texto.

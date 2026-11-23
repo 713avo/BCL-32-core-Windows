@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  windows-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install the cross-compiler (Zig) and Wine
+        run: |
+          ./tools/install-dev.sh
+          sudo apt-get update
+          sudo apt-get install -y wine64
+
+      - name: Build bcl.exe (warning-free)
+        run: |
+          make windows 2>&1 | tee build.log
+          if grep -i 'warning' build.log; then echo "build must be warning-free"; exit 1; fi
+          file bin-win/bcl.exe
+
+      - name: Run the examples under Wine
+        env:
+          WINEDEBUG: "-all"
+        run: |
+          wine bin-win/bcl.exe --version
+          for f in examples/*.bcl; do wine bin-win/bcl.exe --no-rc "$f" one two > /dev/null; done
+
+      - name: Native build (Linux) sanity check
+        run: |
+          make
+          for f in examples/*.bcl; do ./bin/bcl --no-rc "$f" one two > /dev/null; done

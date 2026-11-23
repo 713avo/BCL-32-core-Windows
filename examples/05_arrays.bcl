@@ -1,0 +1,17 @@
+# 05_arrays.bcl -- associative arrays.  / arrays asociativos.
+SET age(ann) 31
+SET age(lou) 27
+SET age(eve) 45
+
+PUTS "elements: [ARRLENG age]"
+SET keys [LSTSORT [ARRKEYS age]]
+SET i 1
+IF $i <= [LSTLENG $keys] DO
+    SET k [LSTGET $keys $i]
+    PUTS "$k is $age($k)"
+    INCR i
+LOOP
+
+PUTS "does age(ann) exist? [EXISTS age(ann)]"
+ARRDEL age ann
+PUTS "after deleting ann: [ARRLENG age]"

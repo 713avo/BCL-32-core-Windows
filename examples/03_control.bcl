@@ -1,0 +1,34 @@
+# 03_control.bcl -- conditionals and loops.  / condicionales y bucles.
+#
+# IF ... THEN ... END is the conditional; IF ... DO ... LOOP is the loop.
+# Arithmetic inside a condition is done with [CALC ...].
+# IF ... THEN ... END es el condicional; IF ... DO ... LOOP es el bucle.
+# La aritmética dentro de una condición se hace con [CALC ...].
+SET n 7
+IF [CALC $n % 2] == 0 THEN
+    PUTS "$n is even"
+ELSE
+    PUTS "$n is odd"
+END
+
+# Loop: repeats while the condition holds. / Se repite mientras la condición sea cierta.
+SET i 1
+IF $i <= 5 DO
+    PUTS "round $i"
+    INCR i
+LOOP
+
+# BREAK and NEXT: the "loop and a half" idiom. / El bucle «y medio».
+SET sum 0
+SET k 0
+IF 1 DO
+    INCR k
+    IF $k > 10 THEN
+        BREAK
+    END
+    IF [CALC $k % 2] == 1 THEN
+        NEXT
+    END
+    SET sum [CALC $sum + $k]
+LOOP
+PUTS "sum of the even numbers up to 10 = $sum"

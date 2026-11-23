@@ -1,0 +1,15 @@
+/bin/
+/bin-win/
+/dist/
+/tools/toolchain/
+/tools/wine/
+/tools/wineprefix/
+/tools/.zigcache/
+/tools/.dl*
+*.o
+*.d
+*.swp
+*~
+.vscode/
+.idea/
+.DS_Store

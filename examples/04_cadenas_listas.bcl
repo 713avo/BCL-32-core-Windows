@@ -1,0 +1,19 @@
+# 04_cadenas_listas.bcl -- strings and lists (1-based indexes).
+#                          cadenas y listas (índices base 1).
+SET s "Hello world"
+PUTS "length: [STRLENG $s]"
+PUTS "upper: [STRUPP $s]"
+PUTS "chars 1-5: [STRRANG $s 1 5]"
+PUTS "position of 'world': [STRFIND $s world]"
+PUTS "reversed: [STRREV $s]"
+
+# A list is text with space-separated elements; braces group elements that
+# contain spaces. / Una lista es texto con elementos separados por espacios;
+# las llaves agrupan los que contienen espacios.
+SET fruits "pear apple {red grape} kiwi"
+PUTS "elements: [LSTLENG $fruits]"
+PUTS "third: [LSTGET $fruits 3]"
+SET fruits [LSTAPP $fruits orange]
+PUTS "sorted: [LSTSORT $fruits]"
+SET p [STRFMT "%05.1f" 3.14159]
+PUTS "STRFMT: $p"

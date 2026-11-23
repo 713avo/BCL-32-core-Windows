@@ -1,0 +1,30 @@
+# 06_procedimientos.bcl -- procedures, parameters, RETURN and recursion.
+#                          procedimientos, parámetros, RETURN y recursión.
+PROC greet WITH name @greeting DO
+    # @greeting is optional: empty if missing. / @greeting es opcional: vacío si falta.
+    IF [STREQ $greeting ""] THEN
+        SET greeting "Hello"
+    END
+    PUTS "$greeting, $name"
+END
+greet Ann
+greet Lou "Good morning"
+
+PROC factorial WITH n DO
+    IF $n <= 1 THEN
+        RETURN 1
+    END
+    RETURN [CALC $n * [factorial [CALC $n - 1]]]
+END
+PUTS "5! = [factorial 5]"
+
+# Procedure variables are local; GLOBAL reaches a global one.
+# Las variables de un procedimiento son locales; GLOBAL accede a una global.
+SET total 0
+PROC accumulate WITH x DO
+    GLOBAL total
+    SET total [CALC $total + $x]
+END
+accumulate 5
+accumulate 7
+PUTS "total = $total"

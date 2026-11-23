@@ -1,0 +1,10 @@
+# 09_argumentos.bcl -- command-line arguments ($ARGS is a list).
+#                      argumentos de la línea de comandos ($ARGS es una lista).
+#
+#   ./bin/bcl examples/09_argumentos.bcl one "two words" three
+PUTS "received: [LSTLENG $ARGS]"
+SET i 1
+IF $i <= [LSTLENG $ARGS] DO
+    PUTS "  arg $i = [LSTGET $ARGS $i]"
+    INCR i
+LOOP

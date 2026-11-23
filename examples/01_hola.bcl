@@ -1,0 +1,11 @@
+# 01_hola.bcl -- the smallest program.   / El programa mínimo.
+#
+#   ./bin/bcl examples/01_hola.bcl
+#
+# PUTS prints with a newline, PUTSN without. Everything in BCL is text.
+# PUTS imprime con salto de línea, PUTSN sin él. Todo en BCL es texto.
+PUTS "Hello, world"
+SET name "BCL"
+PUTS "Welcome to $name"
+PUTSN "No newline... "
+PUTS "and with one."

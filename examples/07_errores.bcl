@@ -1,0 +1,30 @@
+# 07_errores.bcl -- TRY / CATCH and user errors. / TRY / CATCH y errores propios.
+# CATCH takes a variable name: $e is the error text and $e_INFO(CODE),
+# $e_INFO(FACILITY)... its fields.
+# CATCH recibe un nombre de variable: $e es el texto del error y
+# $e_INFO(CODE), $e_INFO(FACILITY)... sus campos.
+TRY
+    PUTS [CALC 1 / 0]
+CATCH e
+    PUTS "caught: $e_INFO(FACILITY):$e_INFO(CODE)"
+END
+
+TRY
+    SOURCE /path/that/does/not/exist.bcl
+CATCH e
+    PUTS "could not source: $e_INFO(FACILITY):$e_INFO(CODE)"
+END
+
+PROC divide WITH a b DO
+    IF $b == 0 THEN
+        ERROR "division by zero in divide"
+    END
+    RETURN [CALC $a / $b]
+END
+TRY
+    PUTS [divide 10 2]
+    PUTS [divide 1 0]
+CATCH e
+    PUTS "user error: $e"
+END
+PUTS "the program goes on / el programa continúa"

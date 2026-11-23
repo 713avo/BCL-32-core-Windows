@@ -1,0 +1,23 @@
+# 02_variables.bcl -- variables, CALC arithmetic and INCR.
+#                     variables, aritmética con CALC e INCR.
+#
+# BCL has a single type (text); numbers are computed with CALC, and $x
+# inserts the value of a variable.
+# BCL solo tiene un tipo (texto); los números se calculan con CALC y $x
+# inserta el valor de una variable.
+SET a 7
+SET b 3
+PUTS "a + b = [CALC $a + $b]"
+PUTS "a * b = [CALC $a * $b]"
+PUTS "a / b = [CALC $a / $b]"
+PUTS "sqrt(2) = [CALC sqrt(2)]"
+PUTS "2^10 = [CALC pow(2, 10)]"
+
+SET counter 0
+INCR counter          # +1
+INCR counter 5        # +5
+INCR counter -2.5     # the delta may be negative or decimal / delta negativo o decimal
+PUTS "counter = $counter"
+
+# Numeric bases / Bases numéricas
+PUTS "0xFF + 0b1010 = [CALC 0xFF + 0b1010]"
