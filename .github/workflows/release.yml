@@ -24,6 +24,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "${GITHUB_REF_NAME}" dist/*.zip \
+          (cd dist && sha256sum *.zip | tee SHA256SUMS.txt)
+          gh release create "${GITHUB_REF_NAME}" dist/*.zip dist/SHA256SUMS.txt \
             --title "BCL-32 core for Windows ${GITHUB_REF_NAME}" \
             --notes "Portable build: unzip and run \`bcl.exe\`. See the README for requirements."
