@@ -854,10 +854,11 @@ int bcl_source_file(bcl_interp_t *interp, bcl_env_t *env, const char *filename) 
     src = bcl_xmalloc(interp, (size_t)size + 1);
     read = fread(src, 1, (size_t)size, f);
     if (read != (size_t)size) {
-        int saved_errno = ferror(f) ? errno : EIO;
+        int read_failed = ferror(f);
+        int saved_errno = read_failed ? errno : EIO;
         free(src);
         fclose(f);
-        set_pending_errno_error(interp, saved_errno, ferror(f) ? NULL : "short read");
+        set_pending_errno_error(interp, saved_errno, read_failed ? NULL : "short read");
         return 1;
     }
     src[read] = '\0';
